@@ -8,6 +8,8 @@ use rand::{
 };
 use solana_program::pubkey;
 
+//comm
+
 pub const AUTHORITY_COUNT: usize = 8;
 pub const AUTHORITY_SEED: &[u8] = b"authority";
 
