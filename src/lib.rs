@@ -8,8 +8,6 @@ use rand::{
 };
 use solana_program::pubkey;
 
-// Now, we only support up to 8 authorities between [0, 1, 2, 3, 4, 5, 6, 7]. To create more authorities, we need to
-// add them in the monorepo. We can use from 0 up to 255 in order to prevent hot accounts.
 pub const AUTHORITY_COUNT: usize = 8;
 pub const AUTHORITY_SEED: &[u8] = b"authority";
 
