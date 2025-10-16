@@ -8,8 +8,6 @@ use rand::{
 };
 use solana_program::pubkey;
 
-//adding test comment to trigger bot
-
 pub const AUTHORITY_COUNT: usize = 8;
 pub const AUTHORITY_SEED: &[u8] = b"authority";
 
@@ -39,6 +37,8 @@ pub fn find_jupiter_token_ledger() -> Pubkey {
         pubkey!("HtncvpUBGhSrs48KtC58ntJcTDw53sn78Lpq71zVwiez"),
         pubkey!("HxTk98CmBcxmtkrBWqRszYxrnDpqAsbitQBc2QjVBG3j"),
         pubkey!("CnUPHtfUVw3D2s4FB8H6QBuLwoes8YxauVgDtFybm7rz"),
+        pubkey!("FhLPkpFmszHtSyyayj7KsXNZeBTqfQbUPmvgWAyJHBXh"),
+        pubkey!("FhLPkpFmszHtSyyayj7KsXNZeBTqfQbUPmvgWAyJHBXh"),
         pubkey!("FhLPkpFmszHtSyyayj7KsXNZeBTqfQbUPmvgWAyJHBXh"),
     ];
     let token_ledger = token_ledgers.iter().choose(&mut rng);
