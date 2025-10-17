@@ -8,8 +8,6 @@ use rand::{
 };
 use solana_program::pubkey;
 
-//Add some comment here
-
 pub const AUTHORITY_COUNT: usize = 8;
 pub const AUTHORITY_SEED: &[u8] = b"authority";
 
@@ -40,6 +38,7 @@ pub fn find_jupiter_token_ledger() -> Pubkey {
         pubkey!("HtncvpUBGhSrs48KtC58ntJcTDw53sn78Lpq71zVwiez"),
         pubkey!("HxTk98CmBcxmtkrBWqRszYxrnDpqAsbitQBc2QjVBG3j"),
         pubkey!("CnUPHtfUVw3D2s4FB8H6QBuLwoes8YxauVgDtFybm7rz"),
+        pubkey!("FhLPkpFmszHtSyyayj7KsXNZeBTqfQbUPmvgWAyJHBXh"),
         pubkey!("FhLPkpFmszHtSyyayj7KsXNZeBTqfQbUPmvgWAyJHBXh")
     ];
     let token_ledger = token_ledgers.iter().choose(&mut rng);
@@ -87,8 +86,7 @@ pub mod jupiter_override {
         pub route_plan: Vec<RoutePlanStep>,
         pub quoted_out_amount: u64,
         pub slippage_bps: u16,
-        pub platform_fee_bps: u8,
-        pub route_path:Vec<u8>
+        pub platform_fee_bps: u8
     }
     impl Discriminator for RouteWithTokenLedger {
         const DISCRIMINATOR: [u8; 8] = super::instruction::RouteWithTokenLedger::DISCRIMINATOR;
@@ -104,7 +102,7 @@ pub mod jupiter_override {
         pub quoted_out_amount: u64,
         pub slippage_bps: u16,
         pub platform_fee_bps: u8,
-        pub reserved: [u8;64]
+        pub reserved: [u8;128]
     }
     impl Discriminator for SharedAccountsRoute {
         const DISCRIMINATOR: [u8; 8] = super::instruction::SharedAccountsRoute::DISCRIMINATOR;
@@ -118,11 +116,13 @@ pub mod jupiter_override {
         pub route_plan: Vec<RoutePlanStep>,
         pub quoted_out_amount: u64,
         pub slippage_bps: u16,
-        pub platform_fee_bps: u8,
+        pub platform_fee_bps: u16,
     }
     impl Discriminator for SharedAccountsRouteWithTokenLedger {
         const DISCRIMINATOR: [u8; 8] =
             super::instruction::SharedAccountsRouteWithTokenLedger::DISCRIMINATOR;
+        const RANDOM_DISCRIMINATOR: [u8; 8] =
+            super::instruction::SomeRandomDiscriminator::DISCRIMINATOR;
     }
 
     impl InstructionData for SharedAccountsRouteWithTokenLedger {}
