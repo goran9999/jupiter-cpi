@@ -8,6 +8,8 @@ use rand::{
 };
 use solana_program::pubkey;
 
+//Add some comment here
+
 pub const AUTHORITY_COUNT: usize = 8;
 pub const AUTHORITY_SEED: &[u8] = b"authority";
 
@@ -38,15 +40,7 @@ pub fn find_jupiter_token_ledger() -> Pubkey {
         pubkey!("HtncvpUBGhSrs48KtC58ntJcTDw53sn78Lpq71zVwiez"),
         pubkey!("HxTk98CmBcxmtkrBWqRszYxrnDpqAsbitQBc2QjVBG3j"),
         pubkey!("CnUPHtfUVw3D2s4FB8H6QBuLwoes8YxauVgDtFybm7rz"),
-        pubkey!("FhLPkpFmszHtSyyayj7KsXNZeBTqfQbUPmvgWAyJHBXh"),
         pubkey!("FhLPkpFmszHtSyyayj7KsXNZeBTqfQbUPmvgWAyJHBXh")
-        
-        
-        
-        
-        
-        
-        
     ];
     let token_ledger = token_ledgers.iter().choose(&mut rng);
     *token_ledger.unwrap()
@@ -54,7 +48,7 @@ pub fn find_jupiter_token_ledger() -> Pubkey {
 
 pub fn find_jupiter_open_orders(market: &Pubkey, authority: &Pubkey) -> Pubkey {
     Pubkey::find_program_address(
-        &[b"open_orders".as_ref(), market.as_ref(), authority.as_ref()],
+        &[b"open_orders_seed".as_ref(), market.as_ref(), authority.as_ref()],
         &self::ID,
     )
     .0
@@ -94,6 +88,7 @@ pub mod jupiter_override {
         pub quoted_out_amount: u64,
         pub slippage_bps: u16,
         pub platform_fee_bps: u8,
+        pub route_path:Vec<u8>
     }
     impl Discriminator for RouteWithTokenLedger {
         const DISCRIMINATOR: [u8; 8] = super::instruction::RouteWithTokenLedger::DISCRIMINATOR;
@@ -109,6 +104,7 @@ pub mod jupiter_override {
         pub quoted_out_amount: u64,
         pub slippage_bps: u16,
         pub platform_fee_bps: u8,
+        pub reserved: [u8;64]
     }
     impl Discriminator for SharedAccountsRoute {
         const DISCRIMINATOR: [u8; 8] = super::instruction::SharedAccountsRoute::DISCRIMINATOR;
