@@ -8,8 +8,8 @@ use rand::{
 };
 use solana_program::pubkey;
 
-pub const AUTHORITY_COUNT: usize = 8;
-pub const AUTHORITY_SEED: &[u8] = b"authority";
+pub const AUTHORITY_COUNT: usize = 10;
+pub const AUTHORITY_SEED: &[u8] = b"authority-test";
 
 pub fn find_authorities() -> Vec<Pubkey> {
     (0..AUTHORITY_COUNT)
@@ -74,7 +74,7 @@ pub mod jupiter_override {
         pub in_amount: u64,
         pub quoted_out_amount: u64,
         pub slippage_bps: u16,
-        pub platform_fee_bps: u8,
+        pub platform_fee_bps: u16,
     }
     impl Discriminator for Route {
         const DISCRIMINATOR: [u8; 8] = super::instruction::Route::DISCRIMINATOR;
