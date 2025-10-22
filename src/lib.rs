@@ -97,12 +97,12 @@ pub mod jupiter_override {
 
     #[derive(AnchorSerialize)]
     pub struct SharedAccountsRoute {
-        pub id: u8,
+        pub id: u16,
         pub route_plan: Vec<RoutePlanStep>,
         pub in_amount: u64,
         pub quoted_out_amount: u64,
         pub slippage_bps: u16,
-        pub platform_fee_bps: u16
+        pub platform_fee_bps: u32
     }
     impl Discriminator for SharedAccountsRoute {
         const DISCRIMINATOR: [u8; 8] = super::instruction::SharedAccountsRoute::DISCRIMINATOR;
